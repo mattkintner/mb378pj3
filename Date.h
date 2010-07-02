@@ -95,7 +95,7 @@ class Date {
         // data
         // ----
 
-        // <your data>
+        T numDays;
 
     private:
         // -----
@@ -106,7 +106,7 @@ class Date {
          * <your documentation>
          */
         bool valid () const {
-            // <your code>
+            return numDays >=0;
             return true;}
 
         // -----------
@@ -120,7 +120,7 @@ class Date {
          */
         Date (const T& days) {
             assert(days >= 0);
-            // <your code>
+            numDays = days;
             if (!valid())
                 throw std::invalid_argument("Date::Date()");}
 
@@ -150,7 +150,38 @@ class Date {
          * @throws invalid_argument if the resulting date is invalid
          */
         Date (const T& day, const T& month, const T& year) {
-            // <your code>
+            int months[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+
+            T temp = 0;
+	    if ( year < 1600 ) {
+		throw std::invalid_argument("Date()");
+	    } else if (month < 1 || month > 12) {
+		throw std::invalid_argument("Date()");
+	    } else if (day < 1 || (day > months[month-1] + (leap_year(year) && month==2 ? 1 : 0))) {
+		throw std::invalid_argument("Date()");
+	    } 
+
+	    if (year > 1600) {
+		for (int i = 1600; i < year; i++){
+			if ((i % 4 == 0) && ( (i % 100 != 0) || (i%400 == 0))) {
+				temp += 366;
+			} else {
+				temp += 365;
+			}
+	   	}
+	    } 
+	
+	    for (int i = 0; i < month-1; i++) {
+		if (i == 1 && leap_year(year)) {
+		    temp += (months[i]+1);
+		} else {
+		    temp += months[i];
+		}
+	   }
+	
+	    temp += day-1;
+
+	    numDays = temp;
             if (!valid())
                 throw std::invalid_argument("Date::Date()");}
 
@@ -167,7 +198,7 @@ class Date {
          * <your documentation>
          */
         bool operator == (const Date& rhs) const {
-            // <your code>
+            return numDays == rhs.numDays;
             return false;}
 
         // ----------
@@ -178,7 +209,7 @@ class Date {
          * <your documentation>
          */
         bool operator < (const Date& rhs) const {
-            // <your code>
+            return numDays < rhs.numDays;
             return false;}
 
         // -----------
@@ -192,7 +223,9 @@ class Date {
          * @throws invalid_argument if the resulting date precedes 1 Jan 1600
          */
         Date& operator += (const T& days) {
-            // <your code>
+            numDays += days;
+            if (!valid())
+                throw std::invalid_argument("Date::Date()");
             return *this;}
 
         // -----------
@@ -206,8 +239,21 @@ class Date {
          * @throws invalid_argument if the resulting date precedes 1 Jan 1600
          */
         Date& operator -= (const T& days) {
-            // <your code>
+            numDays -= days;
+            if (!valid())
+                throw std::invalid_argument("Date::Date()");
             return *this;}
+
+        // ----------
+        // operator +
+        // ----------
+
+        /**
+         * <your documentation>
+         * @return the total number of days in the dates (lhs + rhs)
+         */
+        T operator + (const Date& rhs) const {
+            return numDays + rhs;}
 
         // ----------
         // operator -
@@ -218,8 +264,7 @@ class Date {
          * @return the number of days between the dates (lhs - rhs)
          */
         T operator - (const Date& rhs) const {
-            // <your code>
-            return 0;}
+            return numDays - rhs;}
 
         // ---------
         // leap_year
@@ -230,6 +275,11 @@ class Date {
          */
         bool leap_year () const {
             // <your code>
-            return false;}};
+            return false;}
+
+
+	bool leap_year (const T& year) {
+		return ((year % 4 == 0) && ( (year % 100 != 0) || (year%400 == 0)));
+	}};
 
 #endif // Date_h
