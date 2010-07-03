@@ -35,18 +35,53 @@ struct TestDate : CppUnit::TestFixture {
     // test_constructor
     // ----------------
 
-    void test_constructor () {
+    void test_constructor_1 () {
         try {
             const Date<int> x(0, 1, 1600);
             CPPUNIT_ASSERT(false);}
         catch (std::invalid_argument& e) {
-            CPPUNIT_ASSERT(std::strcmp(e.what(), "Date()") == 0);}}
+            CPPUNIT_ASSERT(std::strcmp(e.what(), "Date::Date()") == 0);}}
+
+    void test_constructor_2 () {
+        try {
+            const Date<int> x(1, 0, 1600);
+            CPPUNIT_ASSERT(false);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(std::strcmp(e.what(), "Date::Date()") == 0);}}
+
+    void test_constructor_3 () {
+        try {
+            const Date<int> x(1, 1, 1599);
+            CPPUNIT_ASSERT(false);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(std::strcmp(e.what(), "Date::Date()") == 0);}}
+
+    void test_constructor_4 () {
+        try {
+            const Date<int> x(29, 2, 2001);
+            CPPUNIT_ASSERT(false);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(std::strcmp(e.what(), "Date::Date()") == 0);}}
+
+    void test_constructor_5 () {
+        try {
+            const Date<int> x(32, 1, 1600);
+            CPPUNIT_ASSERT(false);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(std::strcmp(e.what(), "Date::Date()") == 0);}}
+
+    void test_constructor_6 () {
+        try {
+            const Date<int> x(1, 13, 1600);
+            CPPUNIT_ASSERT(false);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(std::strcmp(e.what(), "Date::Date()") == 0);}}
 
     // -------------
     // test_equal_to
     // -------------
 
-    void test_equal_to () {
+    void test_equal_to_1 () {
         try {
             const Date<int> x(28, 2, 2000);
             const Date<int> y(28, 2, 2000);
@@ -55,11 +90,47 @@ struct TestDate : CppUnit::TestFixture {
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
 
+    void test_equal_to_2 () {
+        try {
+            const Date<int> x(28, 3, 2000);
+            const Date<int> y(28, 2, 2000);
+            CPPUNIT_ASSERT(x != y);
+            CPPUNIT_ASSERT(!(x == y));}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_equal_to_3 () {
+        try {
+            const Date<int> x(29, 2, 2000);
+            const Date<int> y(29, 2, 2000);
+            CPPUNIT_ASSERT(x == y);
+            CPPUNIT_ASSERT(!(x != y));}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_equal_to_4 () {
+        try {
+            const Date<int> x(14, 9, 1986);
+            const Date<int> y(4, 9, 1986);
+            CPPUNIT_ASSERT(x != y);
+            CPPUNIT_ASSERT(!(x == y));}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_equal_to_5 () {
+        try {
+            const Date<int> x(1, 1, 2193);
+            const Date<int> y(1, 1, 2000);
+            CPPUNIT_ASSERT(x != y);
+            CPPUNIT_ASSERT(!(x == y));}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
     // ---------
     // test_less
     // ---------
 
-    void test_less () {
+    void test_less_1 () {
         try {
             const Date<int> x(27, 2, 2000);
             const Date<int> y(28, 2, 2000);
@@ -70,23 +141,183 @@ struct TestDate : CppUnit::TestFixture {
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
 
+    void test_less_2 () {
+        try {
+            const Date<int> x(27, 2, 2000);
+            const Date<int> y(28, 2, 2000);
+            CPPUNIT_ASSERT(!(y <  x));
+            CPPUNIT_ASSERT(!(y <= x));
+            CPPUNIT_ASSERT(y >  x);
+            CPPUNIT_ASSERT(y >= x);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_less_3 () {
+        try {
+            const Date<int> x(28, 2, 2000);
+            const Date<int> y(28, 2, 2000);
+            CPPUNIT_ASSERT(!(x <  y));
+            CPPUNIT_ASSERT(x <= y);
+            CPPUNIT_ASSERT(!(x >  y));
+            CPPUNIT_ASSERT(x >= y);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_less_4 () {
+        try {
+            const Date<int> x(28, 2, 2000);
+            const Date<int> y(28, 3, 2000);
+            CPPUNIT_ASSERT(x <  y);
+            CPPUNIT_ASSERT(x <= y);
+            CPPUNIT_ASSERT(!(x >  y));
+            CPPUNIT_ASSERT(!(x >= y));}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_less_5 () {
+        try {
+            const Date<int> x(28, 3, 2000);
+            const Date<int> y(28, 2, 2000);
+            CPPUNIT_ASSERT(!(x <  y));
+            CPPUNIT_ASSERT(!(x <= y));
+            CPPUNIT_ASSERT(x >  y);
+            CPPUNIT_ASSERT(x >= y);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_less_6 () {
+        try {
+            const Date<int> x(28, 2, 1999);
+            const Date<int> y(28, 2, 2000);
+            CPPUNIT_ASSERT(x <  y);
+            CPPUNIT_ASSERT(x <= y);
+            CPPUNIT_ASSERT(!(x >  y));
+            CPPUNIT_ASSERT(!(x >= y));}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_less_7 () {
+        try {
+            const Date<int> x(28, 2, 2001);
+            const Date<int> y(28, 2, 2000);
+            CPPUNIT_ASSERT(!(x <  y));
+            CPPUNIT_ASSERT(!(x <= y));
+            CPPUNIT_ASSERT(x >  y);
+            CPPUNIT_ASSERT(x >= y);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
     // ---------
     // test_plus
     // ---------
 
-    void test_plus () {
+    void test_plus_1 () {
         try {
             const Date<int> x(1, 1, 2000);
             const Date<int> y(1, 1, 2001);
-            CPPUNIT_ASSERT(x + 365 == y);}
+            //std::ostringstream out;
+            CPPUNIT_ASSERT(x + 366 == y);
+	}
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
+
+    void test_plus_2 () {
+        try {
+            const Date<int> x(1, 1, 2000);
+            const Date<int> y(31, 1, 2000);
+            //std::ostringstream out;
+            CPPUNIT_ASSERT(x + 30 == y);
+	}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_plus_3 () {
+        try {
+            const Date<int> x(1, 1, 2000);
+            const Date<int> y(1, 2, 2000);
+            //std::ostringstream out;
+            CPPUNIT_ASSERT(x + 31 == y);
+	}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_plus_4 () {
+        try {
+            const Date<int> x(1, 1, 2001);
+            const Date<int> y(1, 1, 2002);
+            //std::ostringstream out;
+            CPPUNIT_ASSERT(x + 365 == y);
+	}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_plus_5 () {
+        try {
+            const Date<int> x(1, 2, 2000);
+            const Date<int> y(1, 3, 2000);
+            //std::ostringstream out;
+            CPPUNIT_ASSERT(x + 29 == y);
+	}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_plus_6 () {
+        try {
+            const Date<int> x(1, 2, 2001);
+            const Date<int> y(1, 3, 2001);
+            //std::ostringstream out;
+            CPPUNIT_ASSERT(x + 28 == y);
+	}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_plus_7 () {
+        try {
+            const Date<int> x(1, 1, 1600);
+            const Date<int> y = x + -1;
+            //std::ostringstream out;
+            CPPUNIT_ASSERT(false);
+	}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(std::strcmp(e.what(), "Date::Date()") == 0);}}
+
+    void test_plus_8 () {
+        try {
+            const Date<int> x(1, 2, 2001);
+            const Date<int> y(31, 1, 2001);
+            //std::ostringstream out;
+            CPPUNIT_ASSERT(x + -1 == y);
+	}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_plus_9 () {
+        try {
+            const Date<int> x(1, 3, 2000);
+            const Date<int> y(29, 2, 2000);
+            //std::ostringstream out;
+            CPPUNIT_ASSERT(x + -1 == y);
+	}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_plus_10 () {
+        try {
+            const Date<int> x(1, 3, 2001);
+            const Date<int> y(28, 2, 2001);
+            //std::ostringstream out;
+            CPPUNIT_ASSERT(x + -1 == y);
+	}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+
 
     // ----------
     // test_minus
     // ----------
 
-    void test_minus () {
+    void test_minus_1 () {
         try {
             const Date<int> x(1, 1, 2000);
             const Date<int> y(1, 1, 2001);
@@ -94,11 +325,92 @@ struct TestDate : CppUnit::TestFixture {
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
 
+    void test_minus_2 () {
+        try {
+            const Date<int> x(12, 1, 2000);
+            const Date<int> y(1, 1, 2000);
+            CPPUNIT_ASSERT(x - 11 == y);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+
+    void test_minus_3 () {
+        try {
+            const Date<int> x(1, 3, 2000);
+            const Date<int> y(1, 1, 2000);
+            CPPUNIT_ASSERT(x - 60  == y);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+
+    void test_minus_4 () {
+        try {
+            const Date<int> x(1, 3, 2000);
+            const Date<int> y(1, 2, 2000);
+            CPPUNIT_ASSERT(x - 29 == y);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+
+    void test_minus_5 () {
+        try {
+            const Date<int> x(1, 3, 2001);
+            const Date<int> y(1, 2, 2001);
+            CPPUNIT_ASSERT(x - 28 == y);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+
     // -----------
     // test_output
     // -----------
 
-    void test_output () {
+    void test_output_1 () {
+        try {
+            const Date<int> x(16, 1, 2008);
+            std::ostringstream out;
+            out << x;
+            CPPUNIT_ASSERT(out.str() == "16 Jan 2008");}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_output_2 () {
+        try {
+            const Date<int> x(4, 2, 1986);
+            std::ostringstream out;
+            out << x;
+            CPPUNIT_ASSERT(out.str() == "4 Feb 1986");}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_output_3 () {
+        try {
+            const Date<int> x(16, 3, 2008);
+            std::ostringstream out;
+            out << x;
+            CPPUNIT_ASSERT(out.str() == "16 Mar 2008");}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_output_4 () {
+        try {
+            const Date<int> x(16, 4, 2008);
+            std::ostringstream out;
+            out << x;
+            CPPUNIT_ASSERT(out.str() == "16 Apr 2008");}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_output_5 () {
+        try {
+            const Date<int> x(16, 5, 2008);
+            std::ostringstream out;
+            out << x;
+            CPPUNIT_ASSERT(out.str() == "16 May 2008");}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_output_6 () {
         try {
             const Date<int> x(16, 6, 2008);
             std::ostringstream out;
@@ -107,13 +419,115 @@ struct TestDate : CppUnit::TestFixture {
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
 
+    void test_output_7 () {
+        try {
+            const Date<int> x(4, 7, 1986);
+            std::ostringstream out;
+            out << x;
+            CPPUNIT_ASSERT(out.str() == "4 Jul 1986");}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_output_8 () {
+        try {
+            const Date<int> x(16, 8, 2008);
+            std::ostringstream out;
+            out << x;
+            CPPUNIT_ASSERT(out.str() == "16 Aug 2008");}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_output_9 () {
+        try {
+            const Date<int> x(16, 9, 2008);
+            std::ostringstream out;
+            out << x;
+            CPPUNIT_ASSERT(out.str() == "16 Sep 2008");}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_output_10 () {
+        try {
+            const Date<int> x(16, 10, 2008);
+            std::ostringstream out;
+            out << x;
+            CPPUNIT_ASSERT(out.str() == "16 Oct 2008");}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_output_11 () {
+        try {
+            const Date<int> x(16, 11, 2008);
+            std::ostringstream out;
+            out << x;
+            CPPUNIT_ASSERT(out.str() == "16 Nov 2008");}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_output_12 () {
+        try {
+            const Date<int> x(16, 12, 2008);
+            std::ostringstream out;
+            out << x;
+            CPPUNIT_ASSERT(out.str() == "16 Dec 2008");}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
     // --------------
     // test_leap_year
     // --------------
 
-    void test_leap_year () {
+    void test_leap_year_1 () {
         try {
             CPPUNIT_ASSERT(Date<int>(1, 1, 2000).leap_year());}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_leap_year_2 () {
+        try {
+            CPPUNIT_ASSERT(!(Date<int>(1, 1, 2001).leap_year()));}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_leap_year_3 () {
+        try {
+            CPPUNIT_ASSERT(!(Date<int>(4, 9, 1986).leap_year()));}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_leap_year_4 () {
+        try {
+            CPPUNIT_ASSERT(Date<long>(1, 1, 2000).leap_year());}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_leap_year_5 () {
+        try {
+            CPPUNIT_ASSERT(!(Date<long>(1, 1, 2001).leap_year()));}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_leap_year_6 () {
+        try {
+            CPPUNIT_ASSERT(Date<double>(1, 1, 2000).leap_year());}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_leap_year_7 () {
+        try {
+            CPPUNIT_ASSERT(!(Date<double>(1, 1, 2001).leap_year()));}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_leap_year_8 () {
+        try {
+            CPPUNIT_ASSERT(Date<float>(1, 1, 2000).leap_year());}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_leap_year_9 () {
+        try {
+            CPPUNIT_ASSERT(!(Date<float>(1, 1, 2001).leap_year()));}
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
 
@@ -122,13 +536,60 @@ struct TestDate : CppUnit::TestFixture {
     // -----
 
     CPPUNIT_TEST_SUITE(TestDate);
-    CPPUNIT_TEST(test_constructor);
-    CPPUNIT_TEST(test_equal_to);
-    CPPUNIT_TEST(test_less);
-    CPPUNIT_TEST(test_plus);
-    CPPUNIT_TEST(test_minus);
-    CPPUNIT_TEST(test_output);
-    CPPUNIT_TEST(test_leap_year);
+    CPPUNIT_TEST(test_constructor_1);
+    CPPUNIT_TEST(test_constructor_2);
+    CPPUNIT_TEST(test_constructor_3);
+    CPPUNIT_TEST(test_constructor_4);
+    CPPUNIT_TEST(test_constructor_5);
+    CPPUNIT_TEST(test_constructor_6);
+    CPPUNIT_TEST(test_equal_to_1);
+    CPPUNIT_TEST(test_equal_to_2);
+    CPPUNIT_TEST(test_equal_to_3);
+    CPPUNIT_TEST(test_equal_to_4);
+    CPPUNIT_TEST(test_equal_to_5);
+    CPPUNIT_TEST(test_less_1);
+    CPPUNIT_TEST(test_less_2);
+    CPPUNIT_TEST(test_less_3);
+    CPPUNIT_TEST(test_less_4);
+    CPPUNIT_TEST(test_less_5);
+    CPPUNIT_TEST(test_less_6);
+    CPPUNIT_TEST(test_less_7);
+    CPPUNIT_TEST(test_plus_1);
+    CPPUNIT_TEST(test_plus_2);
+    CPPUNIT_TEST(test_plus_3);
+    CPPUNIT_TEST(test_plus_4);
+    CPPUNIT_TEST(test_plus_5);
+    CPPUNIT_TEST(test_plus_6);
+    CPPUNIT_TEST(test_plus_7);
+    CPPUNIT_TEST(test_plus_8);
+    CPPUNIT_TEST(test_plus_9);
+    CPPUNIT_TEST(test_plus_10);
+    CPPUNIT_TEST(test_minus_1);
+    CPPUNIT_TEST(test_minus_2);
+    CPPUNIT_TEST(test_minus_3);
+    CPPUNIT_TEST(test_minus_4);
+    CPPUNIT_TEST(test_minus_5);
+    CPPUNIT_TEST(test_output_1);
+    CPPUNIT_TEST(test_output_2);
+    CPPUNIT_TEST(test_output_3);
+    CPPUNIT_TEST(test_output_4);
+    CPPUNIT_TEST(test_output_5);
+    CPPUNIT_TEST(test_output_6);
+    CPPUNIT_TEST(test_output_7);
+    CPPUNIT_TEST(test_output_8);
+    CPPUNIT_TEST(test_output_9);
+    CPPUNIT_TEST(test_output_10);
+    CPPUNIT_TEST(test_output_11);
+    CPPUNIT_TEST(test_output_12);
+    CPPUNIT_TEST(test_leap_year_1);
+    CPPUNIT_TEST(test_leap_year_2);
+    CPPUNIT_TEST(test_leap_year_3);
+    CPPUNIT_TEST(test_leap_year_4);
+    CPPUNIT_TEST(test_leap_year_5);
+    CPPUNIT_TEST(test_leap_year_6);
+    CPPUNIT_TEST(test_leap_year_7);
+    CPPUNIT_TEST(test_leap_year_8);
+    CPPUNIT_TEST(test_leap_year_9);
     CPPUNIT_TEST_SUITE_END();};
 
 // ----
