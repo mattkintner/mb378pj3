@@ -77,6 +77,34 @@ struct TestDate : CppUnit::TestFixture {
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(std::strcmp(e.what(), "Date::Date()") == 0);}}
 
+    void test_constructor_7 () {
+        try {
+            const Date<int> x(1, 1, 1600);
+            CPPUNIT_ASSERT(true);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_constructor_8 () {
+        try {
+            const Date<long> x(1, 1, 1600);
+            CPPUNIT_ASSERT(true);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_constructor_9 () {
+        try {
+            const Date<double> x(1, 1, 1600);
+            CPPUNIT_ASSERT(true);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_constructor_10 () {
+        try {
+            const Date<float> x(1, 1, 1600);
+            CPPUNIT_ASSERT(true);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
     // -------------
     // test_equal_to
     // -------------
@@ -708,6 +736,10 @@ struct TestDate : CppUnit::TestFixture {
     CPPUNIT_TEST(test_constructor_4);
     CPPUNIT_TEST(test_constructor_5);
     CPPUNIT_TEST(test_constructor_6);
+    CPPUNIT_TEST(test_constructor_7);
+    CPPUNIT_TEST(test_constructor_8);
+    CPPUNIT_TEST(test_constructor_9);
+    CPPUNIT_TEST(test_constructor_10);
     CPPUNIT_TEST(test_equal_to_1);
     CPPUNIT_TEST(test_equal_to_2);
     CPPUNIT_TEST(test_equal_to_3);
