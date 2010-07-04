@@ -1,39 +1,30 @@
-make TestDate.c++x
-make[1]: Entering directory `/v/filer4b/v38q001/briansuw/cs_mb378pj3'
-/lusr/bin/valgrind TestDate.c++.app
-==26443== Memcheck, a memory error detector.
-==26443== Copyright (C) 2002-2008, and GNU GPL'd, by Julian Seward et al.
-==26443== Using LibVEX rev 1878, a library for dynamic binary translation.
-==26443== Copyright (C) 2004-2008, and GNU GPL'd, by OpenWorks LLP.
-==26443== Using valgrind-3.4.0, a dynamic binary instrumentation framework.
-==26443== Copyright (C) 2000-2008, and GNU GPL'd, by Julian Seward et al.
-==26443== For more details, rerun with: -v
-==26443== 
+==30697== Memcheck, a memory error detector.
+==30697== Copyright (C) 2002-2008, and GNU GPL'd, by Julian Seward et al.
+==30697== Using LibVEX rev 1878, a library for dynamic binary translation.
+==30697== Copyright (C) 2004-2008, and GNU GPL'd, by OpenWorks LLP.
+==30697== Using valgrind-3.4.0, a dynamic binary instrumentation framework.
+==30697== Copyright (C) 2000-2008, and GNU GPL'd, by Julian Seward et al.
+==30697== For more details, rerun with: -v
+==30697== 
 TestDate.c++
-........................................................
+........................................................................
 
 
-OK (56 tests)
+OK (72 tests)
 
 
 Done.
-==26443== 
-==26443== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 21 from 1)
-==26443== malloc/free: in use at exit: 122,880 bytes in 6 blocks.
-==26443== malloc/free: 1,466 allocs, 1,460 frees, 293,561 bytes allocated.
-==26443== For counts of detected errors, rerun with: -v
-==26443== searching for pointers to 6 not-freed blocks.
-==26443== checked 124,260 bytes.
-==26443== 
-==26443== LEAK SUMMARY:
-==26443==    definitely lost: 0 bytes in 0 blocks.
-==26443==      possibly lost: 0 bytes in 0 blocks.
-==26443==    still reachable: 122,880 bytes in 6 blocks.
-==26443==         suppressed: 0 bytes in 0 blocks.
-==26443== Rerun with --leak-check=full to see details of leaked memory.
-make[1]: Leaving directory `/v/filer4b/v38q001/briansuw/cs_mb378pj3'
-make TestDate.javax
-make[1]: Entering directory `/v/filer4b/v38q001/briansuw/cs_mb378pj3'
-make[1]: *** No rule to make target `TestDate.java', needed by `TestDate.class'.  Stop.
-make[1]: Leaving directory `/v/filer4b/v38q001/briansuw/cs_mb378pj3'
-make: *** [test] Error 2
+==30697== 
+==30697== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 21 from 1)
+==30697== malloc/free: in use at exit: 122,880 bytes in 6 blocks.
+==30697== malloc/free: 1,873 allocs, 1,867 frees, 340,237 bytes allocated.
+==30697== For counts of detected errors, rerun with: -v
+==30697== searching for pointers to 6 not-freed blocks.
+==30697== checked 124,228 bytes.
+==30697== 
+==30697== LEAK SUMMARY:
+==30697==    definitely lost: 0 bytes in 0 blocks.
+==30697==      possibly lost: 0 bytes in 0 blocks.
+==30697==    still reachable: 122,880 bytes in 6 blocks.
+==30697==         suppressed: 0 bytes in 0 blocks.
+==30697== Rerun with --leak-check=full to see details of leaked memory.

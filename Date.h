@@ -125,6 +125,7 @@ class Date {
         Date (const T& days) {
             assert(days >= 0);
             numDays = days;
+		  updateDate();
             if (!valid())
                 throw std::invalid_argument("Date::Date()");}
 
