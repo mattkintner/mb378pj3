@@ -376,6 +376,23 @@ struct TestDate : CppUnit::TestFixture {
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
 
+    void test_minus_8 () {
+        try {
+            const Date<int> x(1, 3, 2000);
+            const Date<int> y(1, 2, 2000);
+            CPPUNIT_ASSERT(y - x == -29);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_minus_9 () {
+        try {
+            const Date<int> x(1, 3, 2001);
+            const Date<int> y(1, 2, 2001);
+            CPPUNIT_ASSERT(y - x == -28);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+
 
     // -----------
     // test_output
@@ -587,6 +604,8 @@ struct TestDate : CppUnit::TestFixture {
     CPPUNIT_TEST(test_minus_5);
     CPPUNIT_TEST(test_minus_6);
     CPPUNIT_TEST(test_minus_7);
+    CPPUNIT_TEST(test_minus_8);
+    CPPUNIT_TEST(test_minus_9);
     CPPUNIT_TEST(test_output_1);
     CPPUNIT_TEST(test_output_2);
     CPPUNIT_TEST(test_output_3);
